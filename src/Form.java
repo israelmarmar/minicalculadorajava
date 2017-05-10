@@ -39,7 +39,7 @@ public class Form extends JFrame implements ActionListener {
     private final JPanel pnlBotoes = new JPanel();
     private final JTextField calc = new JTextField();
     double somador = 0;
-    double mult=1;
+    double mult = 1;
     char sinal;
 
     public static boolean isNumeric(String str) {
@@ -54,6 +54,7 @@ public class Form extends JFrame implements ActionListener {
     public Form() {
         super("calculadora java simples");
         setLayout(new BorderLayout());
+        calc.setEnabled(false);
         pnlBotoes.setLayout(new GridLayout(4, 4, 7, 7));
         pnlBotoes.add(btnUm);
         btnUm.addActionListener(this);
@@ -95,7 +96,7 @@ public class Form extends JFrame implements ActionListener {
 
         if (isNumeric(((JButton) evento.getSource()).getText())) {
 
-            if (btnmais.isEnabled()&& btnmenos.isEnabled()&&btnvezes.isEnabled()&&btnrazao.isEnabled()) {
+            if (btnmais.isEnabled() && btnmenos.isEnabled() && btnvezes.isEnabled() && btnrazao.isEnabled()) {
                 calc.setText(calc.getText() + ((JButton) evento.getSource()).getText());
             } else {
                 calc.setText(((JButton) evento.getSource()).getText());
@@ -113,8 +114,8 @@ public class Form extends JFrame implements ActionListener {
             btnvirgula.setEnabled(true);
             btnC.setEnabled(false);
             sinal = '+';
-        }  else if (evento.getSource() == btnmenos) {
-            somador = somador + (somador==0?1:-1)*Double.parseDouble(calc.getText());
+        } else if (evento.getSource() == btnmenos) {
+            somador = somador + (somador == 0 ? 1 : -1) * Double.parseDouble(calc.getText());
             btnmenos.setEnabled(false);
             btnvirgula.setEnabled(true);
             btnC.setEnabled(false);
@@ -126,12 +127,12 @@ public class Form extends JFrame implements ActionListener {
             btnC.setEnabled(false);
             sinal = '*';
         } else if (evento.getSource() == btnrazao) {
-            mult = mult==1?Double.parseDouble(calc.getText()):mult/Double.parseDouble(calc.getText());
+            mult = mult == 1 ? Double.parseDouble(calc.getText()) : mult / Double.parseDouble(calc.getText());
             btnrazao.setEnabled(false);
             btnvirgula.setEnabled(true);
             btnC.setEnabled(false);
             sinal = '/';
-        }else if (evento.getSource() == btnvirgula) {
+        } else if (evento.getSource() == btnvirgula) {
             btnvirgula.setEnabled(false);
             calc.setText(calc.getText() + ((JButton) evento.getSource()).getText());
         } else if (evento.getSource() == btnC) {
@@ -141,25 +142,22 @@ public class Form extends JFrame implements ActionListener {
                 calc.setText("" + somador);
                 somador = 0;
                 btnvirgula.setEnabled(true);
-            }else
-            if (sinal == '-') {
+            } else if (sinal == '-') {
                 somador = somador - Double.parseDouble(calc.getText());
                 calc.setText("" + somador);
                 somador = 0;
                 btnvirgula.setEnabled(true);
-            }else
-            if (sinal == '*') {
-                mult = mult *Double.parseDouble(calc.getText());
+            } else if (sinal == '*') {
+                mult = mult * Double.parseDouble(calc.getText());
                 calc.setText("" + mult);
                 mult = 1;
                 btnvirgula.setEnabled(true);
-            }else if (sinal == '/') {
+            } else if (sinal == '/') {
                 mult = mult / Double.parseDouble(calc.getText());
                 calc.setText("" + mult);
                 mult = 1;
                 btnvirgula.setEnabled(true);
             }
-
 
         }
 
